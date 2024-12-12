@@ -125,7 +125,7 @@ p {
 .mid3 {
   overflow: hidden;
   background-image: url("../img/主地圖2.png");
-  height: 100vh;
+  height: auto;
   background-position: center;
   background-size: cover;
   position: relative;
