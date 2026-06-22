@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -26,6 +26,7 @@
             <li><a href="world.html">世界</a></li>
             <li><a href="info.html">關於我們</a></li>
         </ul>
+        <button class="hamburger" id="hamburger" aria-label="選單"><span></span><span></span><span></span></button>
         
             <div class="dow" id="openPopupDiv">遊戲下載</div>
         </div>
@@ -256,5 +257,22 @@
         addScrollEventListener();
     </script>
     
+    <script>
+      const _hbg = document.getElementById('hamburger');
+      const _navUl = document.querySelector('.nav ul');
+      if (_hbg && _navUl) {
+        _hbg.addEventListener('click', () => {
+          _hbg.classList.toggle('open');
+          _navUl.classList.toggle('open');
+        });
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('.nav')) {
+            _hbg.classList.remove('open');
+            _navUl.classList.remove('open');
+          }
+        });
+      }
+    </script>
 </body>
 </html>
+

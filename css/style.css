@@ -4,14 +4,18 @@
 .nav {
   margin: 0 auto;
   width: 100%;
-  height: 80px;
-  background-color: rgba(53, 53, 53, 0.4);
+  height: 70px;
+  background-color: rgba(20, 20, 20, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   display: flex;
   justify-content: space-between;
-  position: fixed;
   align-items: center;
-  text-align: center;
-  z-index: 3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 .nav ul {
   height: 100%;
@@ -20,43 +24,94 @@
   display: flex;
   padding: 0;
   flex: 1;
-  text-align: center;
+  align-items: center;
+  list-style: none;
 }
 .nav ul li {
-  margin: 0 30px;
+  margin: 0 8px;
   height: 100%;
-  width: 10%;
+  width: auto;
   align-items: center;
   display: flex;
   text-align: center;
 }
 .nav ul li:hover {
   transition: 0.3s;
-  background-color: #E0FFE0;
+  background-color: rgba(224, 255, 224, 0.15);
 }
 .nav ul li:hover a {
-  color: #333333;
+  color: #bbf7a0;
 }
 .nav ul li a {
   display: block;
   margin: 0 auto;
-  font-size: 40px;
+  padding: 0 12px;
+  font-size: 15px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
   color: #ffffff;
   text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: color 0.3s;
 }
 .nav .dow {
-  width: 15%;
+  width: auto;
+  min-width: 110px;
   background-color: rgb(187, 248, 117);
-  border-radius: 20px;
-  height: 100%;
-  font-size: 20px;
-  margin: 0;
+  border-radius: 8px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 800;
+  margin: 0 20px 0 0;
   justify-content: center;
   display: flex;
-  padding: 0;
+  padding: 0 18px;
   align-items: center;
-  color: #333333;
-  font-weight: 800;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.nav .dow:hover {
+  background-color: #a8f560;
+  transform: translateY(-1px);
+}
+
+/* 漢堡選單按鈕 */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  margin-right: 16px;
+  gap: 5px;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  padding: 0;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 body {
@@ -1007,13 +1062,47 @@ footer {
   .mid3 {
     background-image: url(../img/主地圖2直.png);
   }
+  /* 手機版導覽列：收起成漢堡選單 */
+  .hamburger {
+    display: flex;
+    margin-left: auto;
+  }
+  .nav ul {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background-color: rgba(15, 15, 15, 0.96);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    height: auto;
+    padding: 12px 0 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    align-items: center;
+  }
+  .nav ul.open {
+    display: flex;
+  }
   .nav ul li {
-    margin: 0 20px;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    justify-content: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav ul li:last-child {
+    border-bottom: none;
   }
   .nav ul li a {
-    font-size: 15px;
+    font-size: 17px;
     color: white;
     text-decoration: none;
+    padding: 0 20px;
+    width: 100%;
+    text-align: center;
   }
   .nav .dow {
     display: none;
