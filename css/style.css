@@ -383,7 +383,7 @@ p {
   margin: 0;
   max-height: 100%;
   overflow-y: auto;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
   padding-right: 4px;
 }
 
@@ -1225,7 +1225,7 @@ footer {
     margin: 0;
     max-height: 100%;
     overflow-y: auto;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
   }
   .mid {
     height: auto;
