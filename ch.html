@@ -11,7 +11,7 @@
         
     </style>
 </head>
-<body>
+<body class="character-page">
         <div class="nav">
         <ul>
             <li><a href="index.html" class="home">首頁</a></li>
@@ -270,6 +270,7 @@
             allCha.forEach(cha => {
                 cha.style.opacity = '0';
                 cha.style.zIndex = '1';
+                cha.style.pointerEvents = 'none';
             });
     
             // 显示对应 cha
@@ -277,6 +278,7 @@
             if (activeCha) {
                 activeCha.style.opacity = '1';
                 activeCha.style.zIndex = '2';
+                activeCha.style.pointerEvents = 'auto';
     
                 // 显示第一个角色信息
                 const firstCharacterId = activeCha.querySelector('.container2').id; // 获取第一个角色的 ID
@@ -300,7 +302,9 @@
     
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init();
+        if (window.AOS) {
+            AOS.init();
+        }
       </script>
       <script>
         // 当前显示的 section 索引
@@ -348,4 +352,3 @@
     </script>
 </body>
 </html>
-

@@ -42,7 +42,7 @@
     </style>
         
 </head>
-<body>
+<body class="info-page">
         <div class="nav">
         <ul>
             <li><a href="index.html" class="home">首頁</a></li>
@@ -118,14 +118,8 @@
            
             
         </div>
-    
-        
-        
     </div>
-   </div>    
-          
 
-    </div>
     <footer>
         <div class="footer-content">
             <div class="footer-section about">
@@ -178,69 +172,11 @@
             }
         });
     </script>
-    <script>
-       function showCharacter(characterId) {
-    // 隐藏所有角色信息
-    const allCharacters = document.querySelectorAll('.container2');
-    allCharacters.forEach(character => {
-        character.classList.remove('show'); // 移除显示类
-    });
-
-    // 显示指定角色信息
-    const characterToShow = document.getElementById(characterId);
-    if (characterToShow) {
-        characterToShow.classList.add('show'); // 添加显示类
-    }
-}
-
-        function toggleOpacity(clickedContainer, group, chaClass) {
-            // 选择特定组中的所有容器
-            const groupContainers = document.querySelectorAll(`.image-group[data-group="${group}"] .container`);
-    
-            groupContainers.forEach(container => {
-                container.classList.remove('clicked');
-                container.style.filter = 'brightness(0.5)'; 
-            });
-    
-            clickedContainer.classList.toggle('clicked');
-            clickedContainer.style.filter = clickedContainer.classList.contains('clicked') ? 'brightness(1)' : 'brightness(0.5)';
-    
-            // 隐藏所有 cha
-            const allCha = document.querySelectorAll('.cha1, .cha2, .cha3');
-            allCha.forEach(cha => {
-                cha.style.opacity = '0';
-                cha.style.zIndex = '1';
-            });
-    
-            // 显示对应 cha
-            const activeCha = document.querySelector(`.${chaClass}`);
-            if (activeCha) {
-                activeCha.style.opacity = '1';
-                activeCha.style.zIndex = '2';
-    
-                // 显示第一个角色信息
-                const firstCharacterId = activeCha.querySelector('.container2').id; // 获取第一个角色的 ID
-                showCharacter(firstCharacterId); // 显示第一个角色信息
-            }
-        }
-    
-        document.addEventListener("DOMContentLoaded", () => {
-    // 显示 cha1 的第一个角色信息
-    const firstCharacterId = document.querySelector('.cha1 .container2').id; // 获取 cha1 第一个角色的 ID
-    showCharacter(firstCharacterId); // 显示第一个角色信息
-
-    // 模拟点击皮內羅洛村
-    const pineroloVillage = document.querySelector('.image-group .container'); // 选择皮內羅洛村的容器元素
-    if (pineroloVillage) {
-        toggleOpacity(pineroloVillage, 'group2', 'cha1'); // 触发点击事件
-    }
-});
-    </script>
-    
-    
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init();
+        if (window.AOS) {
+            AOS.init();
+        }
       </script>
       <script>
         // 当前显示的 section 索引
@@ -285,4 +221,3 @@
     </script>
 </body>
 </html>
-
