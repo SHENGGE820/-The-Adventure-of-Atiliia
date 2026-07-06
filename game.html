@@ -36,20 +36,20 @@
         }
 
         .carousel-images img {
-            position: relative;
-            max-height: 532px;
+            display: block;
             width: 100%;
-            height: 30%;
-            max-width: none;
-            flex-shrink: 0; /* 确保图片不会缩小 */
-            margin-right: 10px; /* 图片之间的间距 */
+            max-width: 100%;
+            height: auto;
+            aspect-ratio: 4 / 3;
+            flex: 0 0 100%;
             object-fit: cover;
+            border-radius: 20px;
         }
 
     </style>
 
 </head>
-<body>
+<body class="game-page">
         <div class="nav">
         <ul>
             <li><a href="index.html" class="home">首頁</a></li>
@@ -163,7 +163,9 @@
     </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init();
+        if (window.AOS) {
+            AOS.init();
+        }
       </script>
     <script>
       const _hbg = document.getElementById('hamburger');
@@ -183,4 +185,3 @@
     </script>
 </body>
 </html>
-
