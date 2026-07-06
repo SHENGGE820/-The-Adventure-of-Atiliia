@@ -170,11 +170,43 @@ p {
 
 .mid2 {
   overflow: hidden;
-  background-image: url("../img/主地圖.png");
-  height: 100vh;
-  background-position: center;
-  background-size: cover;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #0d0d0d;
+}
+
+/* intro cloud overlays that animate out on load */
+.cloud-intro {
+  position: absolute;
+  width: clamp(600px, 80vw, 1500px);
+  z-index: 3;
+  pointer-events: none;
+}
+.cloud-left {
+  left: 0;
+  animation: slideOutLeft 3s forwards;
+}
+.cloud-right {
+  right: 0;
+  animation: slideOutLeft1 3s forwards;
+  animation-delay: 0.5s;
+}
+
+/* map container – aspect ratio is driven by the <img> inside */
+.map-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  flex-shrink: 0;
+}
+
+.map-image {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .mid3 {
@@ -613,84 +645,92 @@ footer {
     transform: translateY(0); /* 返回初始位置 */
   }
 }
+
+/* float variant that preserves the -50%/-50% centering offset on .flex-link */
+@keyframes float-marker {
+  0%, 100% { transform: translate(-50%, -50%); }
+  50%       { transform: translate(-50%, calc(-50% - 10px)); }
+}
+
 .updown {
-  position: relative; /* 让元素在父容器中相对定位 */
-  animation: float 3s ease-in-out infinite;
+  animation: float-marker 3s ease-in-out infinite;
 }
 
 .flex-link {
   display: flex;
-  flex-direction: column; /* 垂直排列 */
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-end; /* 文字放在底部 */
+  justify-content: flex-end;
   text-decoration: none;
-  width: 150px; /* 根据需要设置宽度 */
-  height: 150px; /* 设置固定高度 */
-  overflow: hidden;
+  position: absolute;
+  width: clamp(80px, 9vw, 150px);
+  height: auto;
+  overflow: visible;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 }
-.flex-link:hover img {
+.flex-link:hover > img:not(.moving-image):not(.moving-image2):not(.clouds) {
   transition: transform 0.3s;
   transform: translateY(-5px);
   box-shadow: -10px 5px 20px rgba(0, 0, 0, 0.3);
 }
 
-.flex-link img {
+.flex-link > img:not(.moving-image):not(.moving-image2):not(.clouds) {
   width: 100%;
   height: auto;
-  flex-grow: 1; /* 图片占满剩余空间 */
+  display: block;
 }
 
 .flex-link .text {
-  font-size: 20px;
+  font-size: clamp(12px, 1.2vw, 20px);
   color: white;
   text-align: center;
   width: 100%;
-  padding: 5px 0;
+  padding: 4px 0;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+  white-space: nowrap;
 }
 
-.flex-link:hover + .circle {
-  opacity: 1; /* 显示 */
-  transform: scale(1); /* 放大到正常尺寸 */
+/* circle shown on marker hover — nested inside .flex-link */
+.flex-link:hover .circle {
+  opacity: 1;
   animation: pulse 2s infinite;
-  transition: 0.5s;
+  transition: opacity 0.5s;
 }
 
+/* desktop: horizontal map (1152×648, 16:9)
+   positions measured at 1920×1080 reference, same 16:9 ratio */
 .v1 {
-  margin-top: 200px;
-  margin-left: 890px;
-  position: absolute;
-  z-index: 1;
+  left: 46.4%;
+  top: 18.5%;
 }
 
 .v2 {
-  margin-top: 270px;
-  margin-left: 320px;
-  position: absolute;
-  z-index: 1;
+  left: 16.7%;
+  top: 25%;
 }
 
 .v3 {
-  margin-top: 570px;
-  margin-left: 1100px;
-  position: absolute;
-  z-index: 1;
+  left: 57.3%;
+  top: 52.8%;
 }
 
 .v4 {
-  margin-top: 400px;
-  margin-left: 1600px;
-  position: absolute;
-  z-index: 1;
-  overflow: visible;
+  left: 83.3%;
+  top: 37%;
 }
 
 .circle {
   background-image: url(../img/箭頭.png);
   background-size: cover;
-  width: 300px;
-  height: 300px;
+  width: clamp(80px, 12vw, 200px);
+  height: clamp(80px, 12vw, 200px);
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   opacity: 0;
+  pointer-events: none;
 }
 
 .team-container {
@@ -817,21 +857,31 @@ footer {
 }
 .moving-image {
   z-index: 3;
-  width: 100px;
+  width: clamp(20px, 2.5vw, 40px);
+  height: auto;
   position: absolute;
   animation: move 10s linear infinite alternate, updown 4s ease-in-out infinite;
 }
 
 .moving-image2 {
   z-index: 3;
-  width: 100px;
+  width: clamp(20px, 2.5vw, 40px);
+  height: auto;
   position: absolute;
   animation: move2 10s linear infinite alternate, updown 4s ease-in-out infinite;
 }
 
 .clouds {
   z-index: 3;
-  transition: 1s;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(24px, 3vw, 48px);
+  height: auto;
+  animation: float 3s ease-in-out infinite;
+  animation-delay: 0.3s;
+  transition: opacity 1s;
 }
 
 .clouds:hover {
@@ -1057,12 +1107,38 @@ footer {
     background-image: url(../img/主地圖2直.png);
   }
   .mid2 {
-    background-image: url(../img/主地圖直.png);
+    min-height: 100svh;
+    background: #0d0d0d;
   }
   .mid3 {
     background-image: url(../img/主地圖2直.png);
   }
-  /* 手機版導覽列：收起成漢堡選單 */
+  /* mobile: vertical map (648×1152, 9:16) — positions as % of image */
+  .v1 {
+    left: 60%;
+    top: 55%;
+  }
+  .v2 {
+    left: 48%;
+    top: 18%;
+  }
+  .v3 {
+    left: 12%;
+    top: 69%;
+  }
+  .v4 {
+    left: 30%;
+    top: 88%;
+  }
+  .flex-link {
+    width: clamp(60px, 18vw, 110px);
+  }
+  .flex-link .text {
+    font-size: clamp(10px, 3vw, 16px);
+  }
+  .circle {
+    display: none;
+  }
   .hamburger {
     display: flex;
     margin-left: auto;
@@ -1160,48 +1236,10 @@ footer {
     margin-top: 55px;
     margin-left: 10px;
   }
-  .v1 {
-    margin-top: 98%;
-    margin-left: 60%;
-    position: absolute;
-    z-index: 1;
-  }
-  .v2 {
-    margin-top: 32%;
-    margin-left: 48%;
-    position: absolute;
-    z-index: 1;
-  }
-  .v3 {
-    margin-top: 122%;
-    margin-left: 12%;
-    position: absolute;
-    z-index: 1;
-  }
-  .v4 {
-    margin-top: 180%;
-    margin-left: 30%;
-    position: absolute;
-    z-index: 1;
-    overflow: visible;
-  }
-  .flex-link {
-    display: flex;
-    flex-direction: column; /* 垂直排列 */
-    align-items: center;
-    justify-content: flex-end; /* 文字放在底部 */
-    text-decoration: none;
-    width: 30%; /* 根据需要设置宽度 */
-    height: 15%; /* 设置固定高度 */
-    overflow: hidden;
-  }
-  .flex-link:hover img {
+  .flex-link:hover > img:not(.moving-image):not(.moving-image2):not(.clouds) {
     transition: transform 0.3s;
     transform: translateY(-5px);
     box-shadow: -10px 5px 20px rgba(0, 0, 0, 0.3);
-  }
-  .circle {
-    display: none;
   }
   .team-container {
     margin: 0 auto;
@@ -1254,41 +1292,25 @@ footer {
     font-size: 13px;
   }
   .v1 {
-    margin-top: 80%;
-    margin-left: 55%;
-    position: absolute;
-    z-index: 1;
+    left: 55%;
+    top: 50%;
   }
   .v2 {
-    margin-top: 26%;
-    margin-left: 45%;
-    position: absolute;
-    z-index: 1;
+    left: 45%;
+    top: 15%;
   }
   .v3 {
-    margin-top: 100%;
-    margin-left: 14%;
-    position: absolute;
-    z-index: 1;
+    left: 14%;
+    top: 66%;
   }
   .v4 {
-    margin-top: 150%;
-    margin-left: 30%;
-    position: absolute;
-    z-index: 1;
-    overflow: visible;
+    left: 30%;
+    top: 85%;
   }
   .flex-link {
-    display: flex;
-    flex-direction: column; /* 垂直排列 */
-    align-items: center;
-    justify-content: flex-end; /* 文字放在底部 */
-    text-decoration: none;
-    width: 30%; /* 根据需要设置宽度 */
-    height: 20%; /* 设置固定高度 */
-    overflow: hidden;
+    width: clamp(55px, 20vw, 100px);
   }
-  .flex-link:hover img {
+  .flex-link:hover > img:not(.moving-image):not(.moving-image2):not(.clouds) {
     transition: transform 0.3s;
     transform: translateY(-5px);
     box-shadow: -10px 5px 20px rgba(0, 0, 0, 0.3);
