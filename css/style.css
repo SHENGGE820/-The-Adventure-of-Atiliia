@@ -359,13 +359,17 @@ p {
 
 .container2 {
   border-radius: 20px;
+  min-height: 220px;
   height: 35%;
   width: 100%;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   display: flex;
   position: absolute;
   flex-direction: row;
+  gap: 16px;
+  padding: 14px;
+  box-sizing: border-box;
   /* 文字居中 */
   cursor: pointer; /* 鼠标悬浮效果 */
   background-image: url("../img/長方形 藍色背景 金色邊框.png");
@@ -373,9 +377,14 @@ p {
   z-index: 1;
 }
 .container2 p {
-  line-height: 1.6;
+  line-height: 1.5;
   font-size: 20px;
   color: white;
+  margin: 0;
+  max-height: 100%;
+  overflow-y: auto;
+  overflow-wrap: anywhere;
+  padding-right: 4px;
 }
 
 .image-group1 {
@@ -426,8 +435,16 @@ p {
 
 .head {
   border-radius: 20px;
-  height: 100%;
-  width: 30%;
+  width: min(32%, 220px);
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.container2 > div {
+  min-width: 0;
+  flex: 1;
 }
 
 .cha {
@@ -1150,8 +1167,10 @@ footer {
     color: white;
   }
   .head {
-    height: 100%;
-    width: 40%;
+    width: min(36%, 160px);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
   }
   .cha1 {
     top: 10%;
@@ -1182,13 +1201,17 @@ footer {
     position: absolute;
   }
   .container2 {
+    min-height: 180px;
     height: 35%;
     width: 100%;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     display: flex;
     position: absolute;
     flex-direction: row;
+    gap: 10px;
+    padding: 10px;
+    box-sizing: border-box;
     /* 文字居中 */
     cursor: pointer; /* 鼠标悬浮效果 */
     background-image: url("../img/長方形 藍色背景 金色邊框.png");
@@ -1196,9 +1219,13 @@ footer {
     z-index: 1;
   }
   .container2 p {
-    line-height: 1.2;
-    font-size: 12px;
+    line-height: 1.35;
+    font-size: clamp(11px, 1.9vw, 14px);
     color: white;
+    margin: 0;
+    max-height: 100%;
+    overflow-y: auto;
+    overflow-wrap: anywhere;
   }
   .mid {
     height: auto;
@@ -1406,11 +1433,11 @@ footer {
   }
   .hero-brand {
     align-self: center;
-    width: min(72vw, 280px);
+    width: min(62vw, 260px);
   }
   .hero-download-area {
     margin-left: 0;
-    width: min(72vw, 280px);
+    width: min(62vw, 260px);
   }
   .hero-download-area .qr2 {
     width: min(100%, 220px);
