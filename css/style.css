@@ -1607,7 +1607,7 @@ footer {
   gap: clamp(20px, 3vw, 36px);
   align-items: start;
   justify-content: center;
-  padding: 104px clamp(20px, 4vw, 48px) 56px;
+  padding: 88px clamp(20px, 4vw, 48px) 40px;
   box-sizing: border-box;
 }
 
@@ -1648,7 +1648,7 @@ footer {
   justify-self: center;
   position: relative;
   width: min(100%, 780px);
-  min-height: 620px;
+  min-height: 560px;
   height: auto;
   margin-top: 0;
   opacity: 0;
@@ -1662,10 +1662,10 @@ footer {
 
 .character-page .container2 {
   position: absolute;
-  inset: 0 0 128px 0;
+  inset: 0 0 108px 0;
   min-height: 0;
   height: auto;
-  padding: clamp(18px, 2.4vw, 24px);
+  padding: clamp(16px, 2.2vw, 22px);
   gap: clamp(14px, 2.4vw, 22px);
   background-position: center;
 }
@@ -1702,12 +1702,12 @@ footer {
   bottom: 0;
   display: flex;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
 .character-page .buttonimg {
-  width: clamp(84px, 9vw, 112px);
+  width: clamp(76px, 8vw, 100px);
   height: auto;
   aspect-ratio: 1 / 1;
   object-fit: cover;
@@ -1776,7 +1776,7 @@ footer {
   .character-page .mid {
     grid-template-columns: 1fr;
     gap: 20px;
-    padding: 96px 16px 48px;
+    padding: 88px 16px 36px;
   }
 
   .character-page .image-group {
@@ -1796,14 +1796,23 @@ footer {
     grid-column: 1;
     grid-row: 2;
     width: min(100%, 560px);
-    min-height: 700px;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
   }
 
   .character-page .container2 {
-    inset: 0 0 112px 0;
+    position: relative;
+    inset: auto;
+    display: none;
     flex-direction: column;
     align-items: center;
     text-align: center;
+  }
+
+  .character-page .container2.show {
+    display: flex;
   }
 
   .character-page .container2 > div {
@@ -1812,6 +1821,15 @@ footer {
 
   .character-page .head {
     width: min(180px, 52vw);
+  }
+
+  .character-page .buttons {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    padding-top: 4px;
   }
 
   .info-page .mid3,
@@ -1855,20 +1873,15 @@ footer {
   .character-page .cha2,
   .character-page .cha3,
   .character-page .cha4 {
-    min-height: 760px;
+    gap: 12px;
   }
 
   .character-page .container2 {
-    inset: 0 0 100px 0;
+    padding: 14px;
   }
 
   .character-page .buttonimg {
-    width: 72px;
-  }
-  .buttons {
-    transition: transform 0.5s ease, filter 0.5s ease;
-    bottom: 25%; /* 将元素定位到父元素的底部 */
-    left: 0; /* 从左侧对齐 */
+    width: 64px;
   }
 }
 .image-group {
