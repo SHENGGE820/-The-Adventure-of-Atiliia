@@ -126,10 +126,11 @@ p {
 }
 
 .video {
-  position: relative;
-  width: 80%;
-  height: 80%; /* 让背景占满视窗高度 */
-  margin: 0 auto;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
 }
 
 .background-video {
@@ -159,6 +160,7 @@ p {
 
 .main {
   height: 100vh;
+  min-height: 100svh;
   background-image: url(../img/主地圖.png);
   background-attachment: fixed;
   background-position: center;
@@ -859,6 +861,146 @@ footer {
   display: none;
 }
 
+.hero-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: clamp(24px, 4vw, 64px);
+  padding: clamp(96px, 12vh, 140px) clamp(24px, 6vw, 72px) clamp(32px, 7vh, 64px);
+  box-sizing: border-box;
+}
+
+.hero-brand {
+  flex: 0 1 clamp(180px, 28vw, 320px);
+  align-self: flex-start;
+}
+
+.hero-content .logo {
+  position: static;
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+}
+
+.hero-download-area {
+  margin-left: auto;
+  width: min(100%, clamp(220px, 24vw, 320px));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(12px, 2vw, 18px);
+}
+
+.hero-download-area .qr2 {
+  display: block;
+  width: min(100%, 280px);
+  height: auto;
+}
+
+.hero-download-area .qr {
+  position: static;
+  left: auto;
+  bottom: auto;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-download-area .qr > img {
+  display: block;
+  width: min(100%, 210px);
+  height: auto;
+}
+
+.hero-download-area .dow1 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-download-area .dowload1 {
+  width: min(100%, 260px);
+  height: auto;
+  margin-top: 0;
+}
+
+.hero-download-area .dowar {
+  width: clamp(30px, 5vw, 46px);
+  height: auto;
+}
+
+.home-character-section {
+  padding: clamp(96px, 12vh, 140px) 24px 72px;
+  box-sizing: border-box;
+}
+
+.home-character-section .image-group1 {
+  width: min(100%, 1120px);
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(18px, 3vw, 28px);
+}
+
+.home-character-section .cha {
+  width: min(100%, 220px);
+  height: auto;
+}
+
+.home-character-section .container1 {
+  width: 100%;
+  min-height: 220px;
+  height: auto;
+  margin-top: 0;
+  padding: clamp(18px, 3vw, 28px);
+  box-sizing: border-box;
+  gap: clamp(16px, 3vw, 28px);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.home-character-section .head {
+  width: clamp(140px, 22vw, 240px);
+  height: auto;
+  flex: 0 0 auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  align-self: center;
+}
+
+.home-character-section .container1-text {
+  width: auto;
+  flex: 1 1 320px;
+  height: auto;
+}
+
+.home-character-section .container1 h2 {
+  margin-top: 0;
+}
+
+.home-character-section .container1 p {
+  margin: 12px 0 0;
+  text-align: left;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+}
+
+.home-character-section .plus {
+  width: fit-content;
+  padding: 0.65rem 1rem;
+}
+
+.home-character-section .plus a {
+  display: block;
+  width: auto;
+}
+
 .carousel-container {
   top: 60px;
   width: 50%; /* 设置宽度为页面的 50% */
@@ -1247,6 +1389,61 @@ footer {
   }
   .background-video1 {
     display: block;
+  }
+  .hero-content {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 96px 20px 24px;
+    text-align: center;
+  }
+  .hero-brand {
+    align-self: center;
+    width: min(72vw, 280px);
+  }
+  .hero-download-area {
+    margin-left: 0;
+    width: min(72vw, 280px);
+  }
+  .hero-download-area .qr2 {
+    width: min(100%, 220px);
+  }
+  .hero-download-area .qr > img {
+    width: min(100%, 180px);
+  }
+  .hero-download-area .dowload1 {
+    width: min(100%, 200px);
+  }
+  .hero-download-area .dowar {
+    display: block;
+    width: 34px;
+  }
+  .home-character-section {
+    padding: 96px 16px 48px;
+  }
+  .home-character-section .image-group1 {
+    width: 100%;
+    gap: 16px;
+  }
+  .home-character-section .container1 {
+    flex-direction: column;
+    padding: 18px 16px;
+  }
+  .home-character-section .head {
+    width: min(220px, 55vw);
+  }
+  .home-character-section .container1-text {
+    width: 100%;
+  }
+  .home-character-section .container1 p {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .home-character-section .plus {
+    margin-top: 24px;
   }
 }
 @media only screen and (max-width: 375px) {
