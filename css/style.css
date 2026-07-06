@@ -896,13 +896,10 @@ footer {
 .clouds {
   z-index: 3;
   position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: clamp(24px, 3vw, 48px);
+  top: 0;
+  left: 0;
+  width: 100%;
   height: auto;
-  animation: float 3s ease-in-out infinite;
-  animation-delay: 0.3s;
   transition: opacity 1s;
 }
 
