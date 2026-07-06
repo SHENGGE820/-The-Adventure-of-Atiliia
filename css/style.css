@@ -1869,19 +1869,12 @@ footer {
 }
 
 @media (max-width: 640px) {
-  .character-page .cha1,
-  .character-page .cha2,
-  .character-page .cha3,
-  .character-page .cha4 {
-    gap: 12px;
-  }
-
   .character-page .container2 {
     padding: 14px;
   }
 
   .character-page .buttonimg {
-    width: 64px;
+    width: clamp(56px, 18vw, 64px);
   }
 }
 .image-group {
